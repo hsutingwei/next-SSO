@@ -1,3 +1,5 @@
+"use client"; // 標記為客戶端組件
+
 import { signIn } from "next-auth/react";
 
 export function CredentialsSignInButton() {
