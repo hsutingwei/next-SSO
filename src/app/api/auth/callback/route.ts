@@ -45,6 +45,8 @@ export async function GET(req: NextRequest) {
     if (!userRes.ok) throw new Error("拿 userinfo 失敗");
 
     const profile = await userRes.json();
+    // 取出系所名稱（有學生才會有 academyRecords）
+    const deptName = profile.academyRecords?.name ?? "";
 
     // 4. 設 own‐cookie 並導回首頁
     const resp = NextResponse.redirect(new URL("/", req.url));
@@ -54,6 +56,7 @@ export async function GET(req: NextRequest) {
         id: profile.id,
         name: profile.chineseName ?? profile.englishName,
         email: profile.email,
+        dept: deptName,
       }),
       httpOnly: true,
       path: "/",

@@ -8,10 +8,18 @@ export default function LoginPage() {
       redirect_uri: process.env.NEXT_PUBLIC_NCU_REDIRECT_URI!,
       response_type: "code",
       scope: [
+        "id",
         "identifier",
         "chinese-name",
         "english-name",
+        "gender",
+        "birthday",
+        "personal-id",
+        "student-id",
+        "academy-records",
+        "faculty-records",
         "email",
+        "mobile-phone"
       ].join(" "),
     });
     window.location.assign(
