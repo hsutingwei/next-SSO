@@ -1,23 +1,28 @@
-import {
-  CredentialsSignInButton,
-} from "@/components/authButtons";
-import { getServerSession } from "next-auth";
-import { authConfig } from "@/lib/auth";
+// app/page.tsx
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export default async function SignInPage() {
-  const session = await getServerSession(authConfig);
+export default async function Page() {
+  // 一定要在 async 函式裡面才可以用 await
+  const cookieStore = await cookies();
+  const session = cookieStore.get("ncusession");
 
-  console.log("Session: ", session);
+  if (!session) {
+    // 沒登入就跳到 /login
+    redirect("/login");
+  }
 
-  if (session) return redirect("/timeline");
+  // 有 session 再 parse 出來
+  const user = JSON.parse(session.value) as {
+    id: number;
+    name: string;
+    email: string;
+  };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center min-h-screen py-2">
-      <div className="flex flex-col items-center mt-10 p-10 shadow-md">
-        <h1 className="mt-10 mb-4 text-4xl font-bold">Sign In</h1>
-        {<CredentialsSignInButton />}
-      </div>
-    </div>
+    <main className="flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-4xl font-bold">歡迎，{user.name}！</h1>
+      <p className="mt-2 text-gray-600">信箱：{user.email}</p>
+    </main>
   );
 }
