@@ -5,7 +5,37 @@ import { redirect } from "next/navigation";
 export default async function Page() {
   const cookieStore = await cookies();
   const session = cookieStore.get("ncusession");
-  if (!session) redirect("/login");
+  
+  // 如果 own‐cookie 不存在，就直接去 Portal OAuth2
+  if (!session) {
+    // 建立授權 URL
+    const authUrl = new URL("https://portal.ncu.edu.tw/oauth2/authorization");
+    authUrl.searchParams.set("client_id", process.env.NEXT_PUBLIC_NCU_CLIENT_ID!);
+    authUrl.searchParams.set(
+      "redirect_uri",
+      process.env.NEXT_PUBLIC_NCU_REDIRECT_URI!
+    );
+    authUrl.searchParams.set("response_type", "code");
+    authUrl.searchParams.set(
+      "scope",
+      [
+        "id",
+        "identifier",
+        "chinese-name",
+        "english-name",
+        "gender",
+        "birthday",
+        "personal-id",
+        "student-id",
+        "academy-records",
+        "faculty-records",
+        "email",
+        "mobile-phone"
+      ].join(" ")
+    );
+    // 直接跳到 Portal，使用者只要在 Portal 已登入就不會再要帳密
+    redirect(authUrl.toString());
+  }
 
   // 解析 own‐cookie
   const { name, email, dept } = JSON.parse(session.value) as {
