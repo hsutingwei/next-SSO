@@ -8,5 +8,6 @@ export async function POST() {
     // 1) 刪除 own‐cookie，2) 回傳 307 並導向相對路徑 /login
     const res = NextResponse.redirect(`${APP_URL}/login`, 307);
     res.cookies.delete({ name: "ncusession", path: "/" });
+    console.log("Return logout POST");
     return res;
 }
