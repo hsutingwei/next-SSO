@@ -8,16 +8,20 @@ export default function MenuBar() {
 
   const handleLogout = async () => {
     try {
-        const APP_URL = process.env.NEXT_PUBLIC_NCU_DEFAULT_PAGE;
-        const res = await fetch(`${APP_URL}/api/auth/logout`, { method: "POST" });
-        if (res.ok) {
-            // 成功後導回 /login
-            router.push(`${APP_URL}/login`);
-        } else {
-            console.error("Logout failed", await res.text());
-        }
+      // Use a relative path so it works both locally and in prod,
+      // and include credentials so the cookie is sent along.
+      const res = await fetch("/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+      if (res.ok) {
+        // After the server clears the cookie, go to /login
+        router.push("/login");
+      } else {
+        console.error("Logout failed:", await res.text());
+      }
     } catch (e) {
-        console.error("Logout error:", e);
+      console.error("Logout error:", e);
     }
   };
 
