@@ -12,7 +12,7 @@ export default function MenuBar() {
         const res = await fetch(`${APP_URL}/api/auth/logout`, { method: "POST" });
         if (res.ok) {
             // 成功後導回 /login
-            router.push("/login");
+            router.push(`${APP_URL}/login`);
         } else {
             console.error("Logout failed", await res.text());
         }
