@@ -49,7 +49,7 @@ export async function GET(req: NextRequest) {
     const deptName = profile.academyRecords?.name ?? "";
 
     // 4. 設 own‐cookie 並導回首頁
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL!;
+    const appUrl = process.env.NEXT_PUBLIC_NCU_DEFAULT_PAGE!;
     const resp = NextResponse.redirect(`${appUrl}/`);
     resp.cookies.set({
       name: "ncusession",
