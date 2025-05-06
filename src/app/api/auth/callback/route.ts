@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { cookies as getRequestCookies } from "next/headers";
 
 // 保證用 Node.js runtime（才能用 Buffer、process.env）
 export const runtime = "nodejs";
@@ -63,6 +64,15 @@ export async function GET(req: NextRequest) {
       path: "/",
       maxAge: 60 * 60 * 24 * 7,
     });
+
+    // 5. 從 req.cookies 讀取舊 cookie 並打印
+    const oldSessionCookie = req.cookies.get("ncusession")?.value;
+    console.log("Old session cookie (from request):", oldSessionCookie);
+
+    // 6. 打印新的 Set-Cookie header
+    const newCookieHeader = resp.headers.get("set-cookie");
+    console.log("Set-Cookie header (new cookie):", newCookieHeader);
+
     return resp;
 
   } catch (e) {
