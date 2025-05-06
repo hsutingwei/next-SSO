@@ -8,15 +8,16 @@ export default function MenuBar() {
 
   const handleLogout = async () => {
     try {
-      const res = await fetch("/api/auth/logout", { method: "POST" });
-      if (res.ok) {
-        // 成功後導回 /login
-        router.push("/login");
-      } else {
-        console.error("Logout failed", await res.text());
-      }
+        const APP_URL = process.env.NEXT_PUBLIC_NCU_DEFAULT_PAGE;
+        const res = await fetch(`${APP_URL}/api/auth/logout`, { method: "POST" });
+        if (res.ok) {
+            // 成功後導回 /login
+            router.push("/login");
+        } else {
+            console.error("Logout failed", await res.text());
+        }
     } catch (e) {
-      console.error("Logout error:", e);
+        console.error("Logout error:", e);
     }
   };
 
