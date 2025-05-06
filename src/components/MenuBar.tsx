@@ -7,6 +7,7 @@ export default function MenuBar() {
   const router = useRouter();
 
   const handleLogout = async () => {
+    console.log("Click handleLogout");
     try {
       // Use a relative path so it works both locally and in prod,
       // and include credentials so the cookie is sent along.
