@@ -11,20 +11,9 @@ export default function MenuBar() {
       const res = await fetch("/api/auth/logout", {
         method: "POST",
         credentials: "include",
-        redirect: "manual",   // 不自動跟隨 307
       });
-
-      if (res.status === 307) {
-        // 手動跟隨 Location header
-        const to = res.headers.get("location");
-        if (to) {
-          window.location.href = to;
-          return;
-        }
-      }
-
       if (res.ok) {
-        // 如果 API 改成回 200，也能走到這裡
+        // 服务器 200 返回后，客户端再去 /login
         router.push("/login");
       } else {
         console.error("Logout failed:", await res.text());
