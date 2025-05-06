@@ -1,3 +1,4 @@
+// src/components/MenuBar.tsx
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -6,13 +7,16 @@ export default function MenuBar() {
   const router = useRouter();
 
   const handleLogout = async () => {
-    // 呼叫 POST /api/auth/logout
-    const res = await fetch("/api/auth/logout", { method: "POST" });
-    if (res.ok) {
-      // 清除完 cookie 後導到 /login
-      router.push("/login");
-    } else {
-      console.error("Logout failed");
+    try {
+      const res = await fetch("/api/auth/logout", { method: "POST" });
+      if (res.ok) {
+        // 成功後導回 /login
+        router.push("/login");
+      } else {
+        console.error("Logout failed", await res.text());
+      }
+    } catch (e) {
+      console.error("Logout error:", e);
     }
   };
 
