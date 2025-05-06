@@ -17,6 +17,7 @@ export default function MenuBar() {
       });
       if (res.ok) {
         // After the server clears the cookie, go to /login
+        console.log("jump to login");
         router.push("/login");
       } else {
         console.error("Logout failed:", await res.text());
