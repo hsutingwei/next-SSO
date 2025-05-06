@@ -1,3 +1,4 @@
+// src/app/api/auth/callback/route.ts
 import { NextRequest, NextResponse } from "next/server";
 
 // 保證用 Node.js runtime（才能用 Buffer、process.env）
@@ -36,16 +37,11 @@ export async function GET(req: NextRequest) {
     if (!access_token) throw new Error("沒有拿到 access_token");
 
     // 3. 讀 userinfo
-    const userRes = await fetch(
-      "https://portal.ncu.edu.tw/apis/oauth/v1/info",
-      {
-        headers: { Authorization: `Bearer ${access_token}` },
-      }
-    );
+    const userRes = await fetch("https://portal.ncu.edu.tw/apis/oauth/v1/info", {
+      headers: { Authorization: `Bearer ${access_token}` },
+    });
     if (!userRes.ok) throw new Error("拿 userinfo 失敗");
-
     const profile = await userRes.json();
-    // 取出系所名稱（有學生才會有 academyRecords）
     const deptName = profile.academyRecords?.name ?? "";
 
     // 4. 設 own‐cookie 並導回首頁
@@ -62,19 +58,17 @@ export async function GET(req: NextRequest) {
       value: cookieValue,
       httpOnly: true,
       path: "/",
-      maxAge: 3 * 60 * 60 * 1000,
+      maxAge: 3 * 60 * 60 * 1000
     });
 
     // 5. 從 req.cookies 讀取舊 cookie 並打印
     const oldSessionCookie = req.cookies.get("ncusession")?.value;
-    console.log("Old session cookie (from request):", oldSessionCookie);
+    console.log("Old session cookie:", oldSessionCookie);
 
     // 6. 打印新的 Set-Cookie header
-    const newCookieHeader = resp.headers.get("set-cookie");
-    console.log("Set-Cookie header (new cookie):", newCookieHeader);
+    console.log("Set-Cookie header:", resp.headers.get("set-cookie"));
 
     return resp;
-
   } catch (e) {
     console.error("☢️ OAuth Callback Error:", e);
     return new NextResponse("Internal Server Error", { status: 500 });
