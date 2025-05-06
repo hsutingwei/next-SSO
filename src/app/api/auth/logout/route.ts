@@ -4,7 +4,6 @@ export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
     try {
-        const origin = req.nextUrl.origin;
         const appUrl = process.env.NEXT_PUBLIC_NCU_DEFAULT_PAGE!;
         const res = NextResponse.redirect(`${appUrl}/login`);
         // 刪除 Session Cookie
