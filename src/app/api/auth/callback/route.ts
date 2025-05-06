@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies as getRequestCookies } from "next/headers";
 
 // 保證用 Node.js runtime（才能用 Buffer、process.env）
 export const runtime = "nodejs";
@@ -52,17 +51,18 @@ export async function GET(req: NextRequest) {
     // 4. 設 own‐cookie 並導回首頁
     const appUrl = process.env.NEXT_PUBLIC_NCU_DEFAULT_PAGE!;
     const resp = NextResponse.redirect(`${appUrl}/`);
+    const cookieValue = JSON.stringify({
+      id: profile.id,
+      name: profile.chineseName ?? profile.englishName,
+      email: profile.email,
+      dept: deptName,
+    });
     resp.cookies.set({
       name: "ncusession",
-      value: JSON.stringify({
-        id: profile.id,
-        name: profile.chineseName ?? profile.englishName,
-        email: profile.email,
-        dept: deptName,
-      }),
+      value: cookieValue,
       httpOnly: true,
       path: "/",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: 3 * 60 * 60 * 1000,
     });
 
     // 5. 從 req.cookies 讀取舊 cookie 並打印
