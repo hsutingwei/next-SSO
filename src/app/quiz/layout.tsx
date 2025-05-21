@@ -13,17 +13,15 @@ export const metadata: Metadata = {
   description: 'An engaging quiz game by Firebase Studio',
 };
 
-export default function RootLayout({
+export default function QuizLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
-        {children}
-        <Toaster />
-      </body>
-    </html>
+    <section className={`${inter.variable} font-sans antialiased`}>
+      {children}
+      <Toaster />
+    </section>
   );
 }
