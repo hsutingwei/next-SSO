@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 222 80% 97%; /* Light Indigo background */
+    --foreground: 225 30% 20%; /* Dark Indigo text */
+    --card: 220 70% 100%; /* White card background */
+    --card-foreground: 225 30% 20%; /* Dark Indigo text for cards */
+    --popover: 220 70% 100%; /* White popover background */
+    --popover-foreground: 225 30% 20%; /* Dark Indigo text for popovers */
+    --primary: 233 39% 47%; /* Indigo */
+    --primary-foreground: 0 0% 100%; /* White */
+    --secondary: 214 90% 59%; /* Blue */
+    --secondary-foreground: 0 0% 100%; /* White */
+    --muted: 220 20% 90%; /* Light gray for muted elements */
+    --muted-foreground: 225 10% 45%; /* Darker gray for muted text */
+    --accent: 36 100% 50%; /* Orange */
+    --accent-foreground: 0 0% 100%; /* White */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 20% 85%; /* Light gray border */
+    --input: 220 20% 85%; /* Light gray input background */
+    --ring: 214 90% 59%; /* Blue for focus rings */
+    --chart-1: 233 39% 47%;
+    --chart-2: 214 90% 59%;
+    --chart-3: 36 100% 50%;
+    --chart-4: 120 60% 45%;
+    --chart-5: 270 60% 60%;
+    --radius: 0.5rem;
+    --sidebar-background: 233 15% 95%; /* Lighter Indigo for sidebar */
+    --sidebar-foreground: 233 30% 30%;
+    --sidebar-primary: 233 39% 47%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 214 90% 59%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 233 15% 85%;
+    --sidebar-ring: 214 90% 59%;
+  }
+  .dark {
+    --background: 233 30% 15%; /* Dark Indigo background */
+    --foreground: 220 50% 95%; /* Light text */
+    --card: 233 30% 20%; /* Slightly lighter Dark Indigo for cards */
+    --card-foreground: 220 50% 95%; /* Light text for cards */
+    --popover: 233 30% 20%; /* Slightly lighter Dark Indigo for popovers */
+    --popover-foreground: 220 50% 95%; /* Light text for popovers */
+    --primary: 233 45% 57%; /* Brighter Indigo */
+    --primary-foreground: 0 0% 100%; /* White */
+    --secondary: 214 80% 65%; /* Brighter Blue */
+    --secondary-foreground: 0 0% 100%; /* White */
+    --muted: 233 25% 30%; /* Darker gray for muted elements */
+    --muted-foreground: 220 15% 65%; /* Lighter gray for muted text */
+    --accent: 36 90% 55%; /* Brighter Orange */
+    --accent-foreground: 0 0% 100%; /* White */
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 233 25% 35%; /* Darker gray border */
+    --input: 233 25% 35%; /* Darker gray input background */
+    --ring: 214 80% 65%; /* Brighter Blue for focus rings */
+    --chart-1: 233 45% 57%;
+    --chart-2: 214 80% 65%;
+    --chart-3: 36 90% 55%;
+    --chart-4: 120 50% 55%;
+    --chart-5: 270 50% 70%;
+    --sidebar-background: 233 30% 12%;
+    --sidebar-foreground: 220 40% 90%;
+    --sidebar-primary: 233 45% 57%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 214 80% 65%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 233 25% 25%;
+    --sidebar-ring: 214 80% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
