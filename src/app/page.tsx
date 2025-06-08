@@ -67,25 +67,31 @@ export default function Page() {
     const genderUpper = gender?.toUpperCase();
 
     return (
-      <main className="flex flex-col items-center justify-center min-h-screen space-y-4">
-        <div className="flex flex-col items-center space-y-4">
-          <Image
-            src={genderUpper === "1" ? "/man.png" : "/woman.png"}
-            alt={genderUpper === "1" ? "Male Avatar" : "Female Avatar"}
-            width={100}
-            height={100}
-            priority
-          />
-          {isIMStudent ? (
-            <h1 className="text-2xl font-bold">
-              歡迎 {name} 蒞臨資管系，今天日期是 {yyyy}年{mm}月{dd}日
-            </h1>
-          ) : (
-            <h1 className="text-2xl font-bold">
-              歡迎 {name} 參觀資管系，現在時間是 {hh}點{min}分
-            </h1>
-          )}
-          <p className="text-sm text-gray-500">({email})</p>
+      <main className="flex items-center justify-center min-h-[calc(100vh-64px)] w-full">
+        <div className="flex flex-col items-center justify-center space-y-6 max-w-full p-4">
+          <div className="flex flex-col items-center gap-6">
+            <Image
+              src={genderUpper === "1" ? "/man.png" : "/woman.png"}
+              alt={genderUpper === "1" ? "Male Avatar" : "Female Avatar"}
+              width={100}
+              height={100}
+              priority
+              className="w-24 h-24 object-contain"
+            />
+            {isIMStudent ? (
+              <h1 className="text-xl md:text-2xl font-bold text-center">
+                歡迎 {name} 蒞臨資管系，
+                <br className="md:hidden" />
+                今天日期是 {yyyy}年{mm}月{dd}日
+              </h1>
+            ) : (
+              <h1 className="text-xl md:text-2xl font-bold text-center">
+                歡迎 {name} 參觀資管系，
+                <br className="md:hidden" />
+                現在時間是 {hh}點{min}分
+              </h1>
+            )}
+          </div>
         </div>
       </main>
     );
