@@ -56,7 +56,7 @@ export async function GET(req: NextRequest) {
     resp.cookies.set({
       name: "ncusession",
       value: cookieValue,
-      httpOnly: true,
+      httpOnly: false,
       path: "/",
       maxAge: 3 * 60 * 60 * 1000
     });
