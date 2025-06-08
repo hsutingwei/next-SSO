@@ -44,6 +44,10 @@ export async function GET(req: NextRequest) {
     const profile = await userRes.json();
     const deptName = profile.academyRecords?.name ?? "";
 
+    // 除錯資訊
+    console.log("Profile from Portal:", profile);
+    console.log("Gender from Portal:", profile.gender);
+
     // 4. 設 own‐cookie 並導回首頁
     const appUrl = process.env.NEXT_PUBLIC_NCU_DEFAULT_PAGE!;
     const resp = NextResponse.redirect(`${appUrl}/`);
@@ -52,6 +56,7 @@ export async function GET(req: NextRequest) {
       name: profile.chineseName ?? profile.englishName,
       email: profile.email,
       dept: deptName,
+      gender: profile.gender
     });
     resp.cookies.set({
       name: "ncusession",
