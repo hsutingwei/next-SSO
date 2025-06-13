@@ -82,29 +82,23 @@ export default function Page() {
 
     return (
       <main className="flex items-center justify-center min-h-[calc(100vh-64px)] w-full bg-gray-50">
-        <div className="flex flex-col md:flex-row items-center justify-center bg-white rounded-xl shadow-lg p-6 md:p-10 gap-8 max-w-2xl w-full">
-          {/* 大頭貼 */}
-          <div className="relative flex-shrink-0 flex items-center justify-center">
-            {/* 藍色圓形背景 */}
-            <div
-              className="absolute bg-blue-500 rounded-full -z-10"
-              style={{
-                width: '90px', height: '90px',
-                top: '50%', left: '50%',
-                transform: 'translate(-50%, -50%)',
-              }}
-            />
-            <Image
-              src={genderUpper === "1" ? "/man.png" : "/woman.png"}
-              alt={genderUpper === "1" ? "Male Avatar" : "Female Avatar"}
-              width={120}
-              height={120}
-              priority
-              className="w-28 h-28 md:w-32 md:h-32 object-contain rounded-full border-4 border-gray-200 relative z-10"
-            />
+        <div className="relative flex flex-col md:flex-row items-center justify-center bg-white rounded-xl shadow-lg p-6 md:p-10 gap-8 max-w-2xl w-full">
+          <div className="relative w-full flex flex-col items-center mb-2 md:mb-0" style={{ height: '8rem' }}>
+            {/* 藍色長方形背景：只在手機顯示 */}
+            <div className="absolute top-0 left-0 w-full h-3/4 bg-blue-500 rounded-t-xl md:hidden" />
+            <div className="absolute left-1/2 top-1/4 transform -translate-x-1/2 z-10">
+              <Image
+                src={genderUpper === "1" ? "/man.png" : "/woman.png"}
+                alt={genderUpper === "1" ? "Male Avatar" : "Female Avatar"}
+                width={112}
+                height={112}
+                priority
+                className="w-28 h-28 object-contain rounded-full border-4 border-gray-200"
+              />
+            </div>
           </div>
           {/* 右側資訊 */}
-          <div className="flex flex-col gap-3 w-full">
+          <div className="flex flex-col gap-3 w-full relative z-10">
             {/* 姓名 */}
             <div className="text-2xl md:text-3xl font-bold text-gray-800">{name}</div>
             {/* 自我介紹 */}
