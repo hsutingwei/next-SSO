@@ -82,10 +82,10 @@ export default function Page() {
 
     return (
       <main className="flex items-center justify-center min-h-[calc(100vh-64px)] w-full bg-gray-50">
-        <div className="relative flex flex-col md:flex-row items-center justify-center bg-white rounded-xl shadow-lg p-6 md:p-10 gap-8 max-w-2xl w-full">
+        <div className="relative flex flex-col md:flex-row items-center justify-center bg-white rounded-xl shadow-lg p-6 md:p-10 gap-8 max-w-2xl w-full mx-2 md:mx-0">
           <div className="relative w-full md:w-2/5 flex flex-col items-center mb-2 md:mb-0" style={{ height: '8rem' }}>
             {/* 藍色長方形背景：只在手機顯示 */}
-            <div className="absolute top-0 left-0 w-full h-3/4 bg-blue-500 rounded-t-xl md:hidden" />
+            <div className="absolute top-0 inset-x-0 h-3/4 bg-blue-500 rounded-t-xl md:hidden -mx-2" />
             <div className="absolute left-1/2 top-1/4 transform -translate-x-1/2 z-10">
               <Image
                 src={genderUpper === "1" ? "/man.png" : "/woman.png"}
