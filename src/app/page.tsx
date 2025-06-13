@@ -83,19 +83,17 @@ export default function Page() {
     return (
       <main className="flex items-center justify-center min-h-[calc(100vh-64px)] w-full bg-gray-50">
         <div className="relative flex flex-col md:flex-row items-center justify-center bg-white rounded-xl shadow-lg p-6 md:p-10 gap-8 max-w-2xl w-full mx-2 md:mx-0">
-          <div className="relative w-full md:w-2/5 flex flex-col items-center mb-2 md:mb-0" style={{ height: '8rem' }}>
-            {/* 藍色長方形背景：只在手機顯示 */}
-            <div className="absolute top-0 inset-x-0 h-3/4 bg-blue-500 rounded-t-xl md:hidden -mx-2" />
-            <div className="absolute left-1/2 top-1/4 transform -translate-x-1/2 z-10">
-              <Image
-                src={genderUpper === "1" ? "/man.png" : "/woman.png"}
-                alt={genderUpper === "1" ? "Male Avatar" : "Female Avatar"}
-                width={112}
-                height={112}
-                priority
-                className="w-28 h-28 object-contain rounded-full border-4 border-gray-200"
-              />
-            </div>
+          <div className="relative flex items-center justify-center w-32 h-32 md:w-36 md:h-36">
+            {/* 灰色圓形背景 */}
+            <div className="hidden md:block absolute w-full h-full bg-gray-200 rounded-full z-0" />
+            <Image
+              src={genderUpper === "1" ? "/man.png" : "/woman.png"}
+              alt={genderUpper === "1" ? "Male Avatar" : "Female Avatar"}
+              width={144}
+              height={144}
+              priority
+              className="w-28 h-28 md:w-32 md:h-32 object-contain rounded-full border-4 border-gray-200 relative z-10"
+            />
           </div>
           {/* 分隔線：只在 md 以上顯示 */}
           <div className="hidden md:block w-2 h-80 bg-blue-500 rounded-full mx-2" />
