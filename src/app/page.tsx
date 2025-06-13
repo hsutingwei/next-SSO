@@ -83,6 +83,8 @@ export default function Page() {
     return (
       <main className="flex items-center justify-center min-h-[calc(100vh-64px)] w-full bg-gray-50">
         <div className="relative flex flex-col md:flex-row items-center justify-center bg-white rounded-xl shadow-lg p-6 md:p-10 gap-8 max-w-2xl w-full mx-2 md:mx-0">
+          {/* 藍色長方形背景：只在手機顯示 */}
+          <div className="absolute top-0 inset-x-0 h-28 bg-blue-500 rounded-t-xl md:hidden -mx-2" />
           <div className="relative flex items-center justify-center w-32 h-32 md:w-36 md:h-36">
             {/* 灰色圓形背景 */}
             <div className="hidden md:block absolute w-full h-full bg-gray-200 rounded-full z-0" />
