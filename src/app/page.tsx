@@ -83,7 +83,7 @@ export default function Page() {
     return (
       <main className="flex items-center justify-center min-h-[calc(100vh-64px)] w-full bg-gray-50">
         <div className="relative flex flex-col md:flex-row items-center justify-center bg-white rounded-xl shadow-lg p-6 md:p-10 gap-8 max-w-2xl w-full">
-          <div className="relative w-full flex flex-col items-center mb-2 md:mb-0" style={{ height: '8rem' }}>
+          <div className="relative w-full md:w-2/5 flex flex-col items-center mb-2 md:mb-0" style={{ height: '8rem' }}>
             {/* 藍色長方形背景：只在手機顯示 */}
             <div className="absolute top-0 left-0 w-full h-3/4 bg-blue-500 rounded-t-xl md:hidden" />
             <div className="absolute left-1/2 top-1/4 transform -translate-x-1/2 z-10">
@@ -97,8 +97,10 @@ export default function Page() {
               />
             </div>
           </div>
+          {/* 分隔線：只在 md 以上顯示 */}
+          <div className="hidden md:block w-2 h-80 bg-blue-500 rounded-full mx-2" />
           {/* 右側資訊 */}
-          <div className="flex flex-col gap-3 w-full relative z-10">
+          <div className="flex flex-col gap-3 w-full md:w-3/5 relative z-10">
             {/* 姓名 */}
             <div className="text-2xl md:text-3xl font-bold text-gray-800">{name}</div>
             {/* 自我介紹 */}
