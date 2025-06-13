@@ -102,30 +102,52 @@ export default function Page() {
             {/* 姓名 */}
             <div className="text-2xl md:text-3xl font-bold text-gray-800">{name}</div>
             {/* 自我介紹 */}
-            <div className="text-base md:text-lg text-gray-600">
+            <div className="text-lg md:text-xl text-gray-600 text-left">
               {isIMStudent ? (
-                <span>
-                  歡迎 {name} 蒞臨資管系，今天日期是 {yyyy}年{mm}月{dd}日
-                </span>
+                <div className="flex flex-col items-start">
+                  <span>
+                    歡迎 {name} 蒞臨資管系，
+                  </span>
+                  <span>
+                    今天日期是 {yyyy}年{mm}月{dd}日
+                  </span>
+                </div>
               ) : (
-                <span>
-                  歡迎 {name} 參觀資管系，現在時間是 {hh}點{min}分
-                </span>
+                <div className="flex flex-col items-start">
+                  <span>
+                    歡迎 {name} 參觀資管系，
+                  </span>
+                  <span>
+                    現在時間是 {hh}點{min}分
+                  </span>
+                </div>
               )}
             </div>
             {/* 學號、身分、系別 */}
-            <div className="flex flex-col gap-1 text-sm md:text-base text-gray-700 mt-2">
+            <div className="flex flex-col gap-1 text-base- md:text-lg text-gray-700 mt-2">
               {identifier && (
-                <div><span className="font-semibold">學號：</span>{identifier}</div>
+                <div className="flex">
+                  <span className="font-semibold w-20">學號：</span>
+                  <span className="break-all">{identifier}</span>
+                </div>
               )}
               {accountType && (
-                <div><span className="font-semibold">身分：</span>{accountType}</div>
+                <div className="flex">
+                  <span className="font-semibold w-20">身分：</span>
+                  <span className="break-all">{accountType}</span>
+                </div>
               )}
               {(academyRecords?.name || dept) && (
-                <div><span className="font-semibold">系別：</span>{academyRecords?.name || dept}</div>
+                <div className="flex">
+                  <span className="font-semibold w-20">系別：</span>
+                  <span className="break-all">{academyRecords?.name || dept}</span>
+                </div>
               )}
               {email && (
-                <div><span className="font-semibold">Email：</span>{email}</div>
+                <div className="flex">
+                  <span className="font-semibold w-20">Email：</span>
+                  <span className="break-all">{email}</span>
+                </div>
               )}
             </div>
           </div>
