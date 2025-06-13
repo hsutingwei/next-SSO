@@ -52,11 +52,9 @@ export async function GET(req: NextRequest) {
     const appUrl = process.env.NEXT_PUBLIC_NCU_DEFAULT_PAGE!;
     const resp = NextResponse.redirect(`${appUrl}/`);
     const cookieValue = JSON.stringify({
-      id: profile.id,
+      ...profile,
       name: profile.chineseName ?? profile.englishName,
-      email: profile.email,
-      dept: deptName,
-      gender: profile.gender
+      dept: deptName
     });
     resp.cookies.set({
       name: "ncusession",
